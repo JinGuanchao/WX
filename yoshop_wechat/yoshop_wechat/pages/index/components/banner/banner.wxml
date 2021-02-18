@@ -1,0 +1,13 @@
+<!-- banner轮播 -->
+<view class="index-banner">
+  <swiper autoplay="{{autoplay}}" class="banner-box swiper-box dot-{{item.style.btnShape}}" duration="{{duration}}" circular="{{true}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}" indicator-color="{{item.style.btnColor}}" indicator-active-color="#000" bindchange="bindChange" data-item-key="{{item_key}}" style="height:{{imgHeights[item_key][imgCurrent[item_key]]}}rpx" style="height:400rpx;">
+    <navigator hover-class="none" wx:for="{{items.data}}" wx:key="this" wx:for-item="banner" url="{{banner.adv_link}}">
+      <swiper-item item-id="{{index}}">
+        <image class="slide-image" bindload="imagesHeight" src="{{banner.adv_code}}" data-id="{{index}}" data-item-key="{{item_key}}"></image>
+      </swiper-item>
+    </navigator>
+  </swiper>
+
+  <!-- 顶部置灰 -->
+  <!-- <view class="linear"></view>  -->
+</view>

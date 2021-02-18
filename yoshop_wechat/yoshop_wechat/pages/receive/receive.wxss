@@ -1,0 +1,13 @@
+.receive{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  position:absolute;
+  top:500rpx;
+}
+.btn{
+  width:350rpx;
+  height:100rpx;
+  color:white;
+  background:rgba(254,214,155,1);
+}

@@ -1,0 +1,68 @@
+<view class="page">
+
+  <view class='integral-page clearfix'>
+    <image class='integral-bg' src='../../../images/integral-top.png'></image>
+    <view class='integral-num'>
+      <view class='all-integral' style="margin-top:{{btnTop}}">{{member_points}}
+        <text>总积分</text>
+      </view>
+      <text class='integral-link' bindtap='integralExplain'>积分明细>></text>
+    </view>
+  </view>
+  <view class='integral-detail clearfix'>
+    <view class='integral-text fl'>
+      <text class='place'>{{member_level == '普通' ? '成为推广商' : ''}}可兑换<text style="color:red;">{{member_points / 2}}</text>个原始股</text>
+      <!-- <text class='card_number'>可兑换 {{member_points / 2}}原始股</text> -->
+
+      <!-- <view class='flight-discount clearfix'>
+        <text class='time fl' decode="{{true}}">哈哈哈哈哈</text>
+
+      </view> -->
+    </view>
+  </view>
+</view>
+
+
+<!-- modal说明、规则、须知弹窗-->
+<modalView show="{{showTextModal}}" single='{{single}}' existence="{{existence}}">
+  <view class='modal-content'>
+    <scroll-view scroll-y class="main-content">
+      <view class='text-content'>
+        <text>积分说明</text>
+
+        <text>1、推荐200人登入平台自动成为推广商，每推荐一人有200元代金劵和1个积分两个积分换1股原始股、只有成为推广商IPO上市后才能兑换股权</text>
+
+        <text>2、直接推荐10000人登入平台，奖励原始股1000股</text>
+        
+        <text>3、直接推荐10万人登入平台奖励2万原始股</text>
+        <!-- <text>4、铂金VIP:送50积分；
+创业合伙人：送200积分；
+事业合伙人：送500积分；
+董事：送1000积分；
+</text> -->
+       
+      </view>
+    </scroll-view>
+  </view>
+</modalView>
+
+<!-- 明细 -->
+<view class='model' wx:if="{{showTextModal}}">
+  <view class='invisible_model' catchtap='invisible'></view>
+  <view class='input-box'>
+    <scroll-view scroll-y class="scroll-y" style='margin-top:-5rpx;'>
+      <view class='integral-detail clearfix' wx:for="{{ list }}" wx:key="" wx:for-item="item" id='{{ item.id }}' wx:for-index="index" data-index="{{ index }}">
+        <view class='integral-text fl'>
+          <text class='place'>{{item.pl_desc}}</text>
+          <text class='card_number'>{{item.pl_points}}</text>
+
+          <view class='flight-discount clearfix'>
+            <text class='time fl' decode="{{true}}">{{item.pl_addtime}}</text>
+
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  
+</view>

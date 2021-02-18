@@ -1,0 +1,52 @@
+<!--默认视频组件是隐藏的-->
+<view class="video">
+
+  <video class="videoPlay" show-center-play-btn="{{false}}" title="视频上传" bindfullscreenchange="fullScreen" src="{{videoSource}}" custom-cache="{{true}}" controls="{{true}}" bindplay="eventPlay" bindtap="videoTap"></video>
+  <!-- <button class="upload" type="primary" bindtap="listenerBtnOpenVideo">上传视频</button> -->
+  <view class="btm">
+    <view class="btms" bindtap="clickme">
+      <image class="open" src="../../../images/music.png"></image>
+      <view class="tips">选配乐</view>
+    </view>
+    <view class="btms" bindtap="listenerBtnOpenVideo">
+      <image class="open" src="../../../images/video.png"></image>
+      <view class="tips">拍摄/上传</view>
+    </view>
+    <view class="btms" bindtap="showInputBox">
+      <image class="open" src="../../../images/comment.png"></image>
+      <view class="tips">说点什么</view>
+    </view>
+    
+    <view class="btms" wx:if="{{videoSource!=''}}" bindtap="complete">
+      <image class="open" src="../../../images/complete.png"></image>
+      <view class="tips">完成</view>
+    </view>
+  </view>
+</view>
+<!-- 弹出框 -->
+<!--屏幕背景变暗的背景  -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<!--弹出框  -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+  <view class="selectbgm">
+    <view bindtap="cancel">取消</view>
+    <view bindtap="selectBgms">确定</view>
+  </view>
+  <scroll-view class="scroll" scroll-y='true' style="height:90%;">
+<!--  display: inline-block-->
+  <block wx:for="{{bgmList}}">
+    <audio class="{{index==key && select == true ? 'audios' : 'audio'}}" name="{{item.bgm_name}}" author="{{item.author}}" poster="{{item.poster}}" controls src="https://jx.huachenedu.cn/public/{{item.bgm_src}}" bindtap="selectBgm" data-index="{{index}}"></audio>
+  </block>
+  </scroll-view>
+</view>
+<!-- 输入框 -->
+<view class='model' wx:if="{{inputBoxShow}}">
+<form bindsubmit="formSubmit">
+        <!-- invisible_model view 用于点击隐藏model评论框 -->
+  <view class='invisible_model' catchtap='invisible'></view>
+  <view class='input-box'>
+    <textarea class="textarea" placeholder="说点什么吧" cursor-spacing="{{65}}" show-confirm-bar="{{false}}" adjust-position="{{true}}" auto-focus="{{true}}" name="title" />
+    <button class='send' style="width:20%;" form-type="submit">确定</button>
+  </view>
+</form>
+</view>

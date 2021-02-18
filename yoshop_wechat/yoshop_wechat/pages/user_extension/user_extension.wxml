@@ -1,0 +1,37 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="home-page" style="margin-top:{{top+60}}px">
+
+  <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage" />
+
+  <view class='distribution-posters'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}" bindchange="bindchange" previous-margin="40px" next-margin="40px">
+      <block wx:for="{{spreadList}}" wx:key>
+        <swiper-item>
+          <image src="{{item.poster}}" class="slide-image {{swiperIndex == index ? 'active' : 'quiet'}}" mode='aspectFill' />
+          <view class="nikename-box">
+            <view class="nikename-auto">
+              <view class="nikename-head">
+                <image class="auto" src="{{avatar}}" mode="widthFix"></image>
+              </view>
+              <view class="nikename-titel">{{nickanme}}</view>
+              <view class="nikename-detail">邀请您加入</view>
+            </view>
+          </view>
+
+          <view class="code-box">
+            <view class="code-auto">
+              <view class="code-head">
+                <image class="auto" wx:if="{{code_img}}" src="{{code_img}}" mode="widthFix" style="height:100%"></image>
+              </view>
+            </view>
+          </view>
+
+          <!-- <view class="langbth">长按识别或者扫二维码进入</view> -->
+        </swiper-item>
+      </block>
+    </swiper>
+    <button class='keep bg-color' open-type="share" type="primary">邀请好友</button>
+    <view class='keep bg-color' bindtap='eventDraw'>转发朋友圈</view>
+
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<view class="page">
+  <view class="top">
+    <open-data type="userAvatarUrl"></open-data> 
+  </view>
+  <view class="btm">
+    <!-- <view class="operation">
+      <image src="../../images/shop.png" class="img"></image>
+      <view>店铺管理</view>
+    </view> -->
+    <navigator hover-class="navigator-hover" url="./list/list">
+      <view class="operation">
+        <image src="../../images/shop.png" class="img"></image>
+        <view>商品管理</view>
+      </view>
+    </navigator>
+    <navigator hover-class="navigator-hover" url="./addgoods/addgoods">
+      <view class="operation">
+        <image src="../../images/shop.png" class="img"></image>
+        <view>添加商品</view>
+      </view>
+    </navigator>
+    <!-- <view class="operation">
+      <image src="../../images/shop.png" class="img"></image>
+      <view>商品订单</view>
+    </view> -->
+  </view>
+</view>

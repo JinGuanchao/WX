@@ -1,0 +1,27 @@
+<view class='list'>
+  <view class="tab-h">
+    <view class="tab-item {{current==0?'active':''}}" data-current="0" bindtap="swichNav">通过审核</view>
+    <view class="tab-item {{current==1?'active':''}}" data-current="1" bindtap="swichNav">正在审核</view>
+  </view>
+  <view class="goods" wx:for="{{prod_list}}" wx:if="{{item.pgoods_state == current}}">
+    <image class="left" src="https://jx.huachenedu.cn/public/uploads/home/pointprod/{{item.pgoods_image}}"></image>
+    <view class="right">
+      <view class="left-1">
+        <view style="font-size:18px;">{{item.pgoods_name}}</view>
+        <view style="color:#666;">{{item.price}}</view>
+        <view style="color:#999;">{{item.pgoods_price}}</view>
+      </view>
+      <view class="right-1">
+        <view wx:if="{{item.pgoods_state == 0}}" bindtap="is_show" data-pgoods_id="{{item.pgoods_id}}" data-pgoods_show="{{item.pgoods_show}}" style="color:{{item.pgoods_show == 1 ? 'red' : 'orange'}}">{{item.pgoods_show == 1 ? '下架' : '上架'}}</view>
+        <view wx:if="{{item.pgoods_state == 1}}" style="color:#999">审核中</view>
+        <navigator hover-class="navigator-hover" url="../edit/edit?goods_id={{item.pgoods_id}}">
+          <view style="color:#666">编辑</view>
+        </navigator>
+        <navigator hover-class="navigator-hover" url="../../goods/index?goods_id={{item.pgoods_id}}">
+          <view style="color:#666">预览</view>
+        </navigator>
+        <view bindtap="del" data-pgoods_id="{{item.pgoods_id}}" style="color:red;">删除</view>
+      </view>
+    </view>
+  </view>
+</view>

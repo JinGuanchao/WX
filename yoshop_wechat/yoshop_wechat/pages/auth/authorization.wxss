@@ -1,0 +1,32 @@
+/**authorization.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.usermotto {
+  margin-top: 0rpx;
+}
+
+.content {
+  margin-top: 100rpx;
+  margin-bottom: 90rpx;
+}
+
+.content text {
+  font-size: medium;
+  display: block;
+  color: #9d9d9d;
+  margin-top: 40rpx;
+}
+
+ .container {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}

@@ -1,0 +1,130 @@
+<view class="container p-bottom">
+  <!-- 配送地址 -->
+  <view catchtap="address">
+    <view wx:if="{{address}}">
+      <view class="b-f">
+        <view class="flow-checkout-header dis-box">
+          <text class="iconfont icon-dingwei1"></text>
+          <view class="flow-header-left">
+            <view class="flow-checkout-admin f-30 col-3">
+              <text>{{address.userName}}</text>
+              <text>{{address.telNumber}}</text>
+              <text class="col-m"></text>
+            </view>
+            <view class="flow-checkout-address">
+              {{address.provinceName}} {{address.cityName}} {{address.countyName}} {{address.detailInfo}}
+            </view>
+          </view>
+          <view class="flow-header-right pr-12">
+            <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="flow-checkout-header dis-box">
+        <text class="iconfont icon-dingwei1"></text>
+        <view class="flow-header-left">
+          <view class="f-28 col-6">去选择配送地址
+          </view>
+        </view>
+        <view class="flow-header-right no-flow p-r15">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="m-top20">
+    <view class="checkout_list " wx:for="{{goods_list}}" wx:key="this">
+      <navigator url="../goods/index?goods_id={{item.pgoods_id}}">
+        <view class="dis-flex flow-shopList" data-index="{{index}}">
+          <view class="flow-list-left">
+            <image mode="aspectFit" src="https://jx.huachenedu.cn/public/uploads/home/pointprod/{{item.pgoods_image}}"></image>
+          </view>
+          <view class="flow-list-right box-flex">
+            <text class="f-30 col-3 twolist-hidden">{{item.pgoods_name}}</text>
+            <text class="f-26 col-7">{{item.goods_sku.goods_attr}}</text>
+            <view class="flow-list-cont">
+              <text class="flow-cont">￥{{item.price}}</text>
+              <text class="small">×{{item.pgoods_num}}</text>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <view style="display:flex;">
+        <view>订单备注: </view>
+        <input  placeholder='选填,订单备注'  type='text' class="in" data-index="{{index}}" bindinput='getInputValue' />
+      </view>
+    </view>
+    <view class="flow-num-box b-f padding-box">
+      <text>共{{pgoods_num}}件商品，合计：</text>
+      <text class="flow-money col-m">￥{{total}}</text>
+    </view>
+  </view>
+
+  <!-- 商品金额 -->
+  <view class="flow-all-money b-f padding-box m-top20">
+    <view class="dis-flex flow-all-list">
+      <text class="flex-five">商品总金额:</text>
+      <view class="flex-five t-r">
+        <text class="col-m">￥{{total}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 优惠券 -->
+  <view class="flow-all-money b-f padding-box m-top20" wx:if="{{!options.spell_id}}">
+    <view class="dis-flex flow-all-list">
+      <text class="flex-five">代金券:</text>
+      <view class="flex-five t-r">
+        <text class="col-m">-￥{{token}}(最高可使用￥{{limit_price}}元代金券)</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="flow-all-money b-f padding-box m-top20" wx:if="{{options.spell_id}}">
+    <view class="dis-flex flow-all-list">
+      <text class="flex-five">拼团价:</text>
+      <view class="flex-five t-r" bindtap="coupon">
+        <text class="col-m">￥{{options.price}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交订单 -->
+  <view class="flow-fixed-footer b-f m-top10">
+    <view class="dis-flex chackout-box">
+      <view class=" chackout-left pl-12 ">实付款：
+        <text class="col-m">￥{{order_total_price}}</text>
+      </view>
+      <view bindtap="submitOrder" class="chackout-right">
+        <text class="flow-btn">提交订单</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷导航 -->
+  <view class="filter-menu {{nav_select?'active':''}}">
+    <view class="filter-menu-list ts-5">
+      <custom-ul>
+        <custom-li bindtap="nav" data-index="home">
+          <text class="iconfont icon-home"></text>
+        </custom-li>
+        <custom-li bindtap="nav" data-index="fenlei">
+          <text class="iconfont icon-fenlei"></text>
+        </custom-li>
+        <custom-li bindtap="nav" data-index="cart">
+          <text class="iconfont icon-cart"></text>
+        </custom-li>
+        <custom-li bindtap="nav" data-index="profile">
+          <text class="iconfont icon-profile"></text>
+        </custom-li>
+        <custom-li class="w"></custom-li>
+      </custom-ul>
+    </view>
+    <view bindtap="commonNav" class="filter-menu-title"></view>
+  </view>
+
+</view>

@@ -1,0 +1,130 @@
+
+<!--index.wxml-->
+<view class="videoBox">
+  <view class="top" wx:if="{{hide == 1}}">
+    <view style="margin-right:20rpx;">推荐</view>
+    <view>|</view>
+    <view style="margin-left:20rpx;color:#ccc;" bindtap="myvideo">我的</view>
+  </view>  
+  <view class="video {{touch==true? 'transfrom' : '' }}" style="transform:translateY(-{{current*100}}%);" bindtouchstart='touchstart' bindtouchmove='touchmove' bindtouchend='touchend' bindtouchcancel='touchcancel'>
+    <view wx:for="{{videoList}}" class='videoitem' wx:key="{{item}}">
+      <video wx:if="{{current==index}}" bindtimeupdate="videoUpdate" show-center-play-btn="{{false}}" title="{{item.title}}" src="https://jx.huachenedu.cn/public/{{item.video_src}}" custom-cache="{{true}}" controls="{{true}}" loop bindplay="eventPlay" bindtap="videoTap" autoplay="true">
+      </video>
+  <!-- 右侧区域 -->
+      <view class='btnBox {{switchTo?"show":"hide"}}'>
+        <view class='btnTx' bindtap='{{isFollow==0?"follow":""}}'>
+          <image class='TX' src='{{item.member_avatar}}'></image>
+          <image class='followAdd {{isFollow==0?"show":"hide"}}' src='../../images/fav.png'></image>
+        </view>
+        <view class='btnCollect' bindtap='favorclick' data-id="{{item.video_id}}">
+          <image src="{{item.image}}"></image>
+          <text>{{item.like_num}}</text>
+        </view>
+        <view class='btnCollect' bindtap='comment'>
+          <image src='../../images/comment.png'></image>
+          <text>{{item.message}}</text>
+        </view>
+        <view class='btnCollect' bindtap='handleDownload'>
+          <image src='../../images/down2.png'></image>
+          <text>下载</text>
+        </view>
+      </view>
+      <!-- 描述  -->
+      <view class='describe {{switchTo?"show":"hide"}}'>
+        <view class='nameAddr clearfix'>
+          <text class='fl' style="margin-right:10rpx">@{{item.member_nickname}}</text>
+          <!-- <view class='fl addr clearfix'> -->
+            <!-- <image class='fl' src='../../images/fav.png'></image> -->
+            <!-- <text class='fl'>哈哈哈哈哈哈哈哈哈哈或</text> -->
+          <!-- </view> -->
+        </view>
+        <!-- <text class="descText">{{item.projectContent}}</text> -->
+        <view class='labelS clearfix'>
+          <text>#{{item.video_title}}</text>
+        </view>
+      </view>
+      <!-- 播放暂停图标 请换成自己的路径 -->
+      <!-- <image class="playImg" src="../../images/fav.png" wx:if="{{play}}" bindtap='videoTap'></image> -->
+      <!-- 进度条 -->
+      <slider class='{{switchTo?"show":"hide"}}' bindchange="sliderChange" bindchanging="sliderChanging" step="1" block-size='10' value="{{sliderValue}}" backgroundColor="#797979" activeColor="#fff" />
+    </view>
+  </view>
+</view>
+
+<image src='../../images/refresh.png' class='goTop' bindtap="goTop"></image>
+<!-- 评论 -->
+<view class="ruleZhezhao {{isNoticeTrue?'isNoticeShow':'isNoticeHide'}}">
+  <view class='ruleZhezhaoContent'>
+    <view class='ruleZhezhaoText'>
+      <text class="m7">评论</text>
+    </view>
+    <image src='../../images/close.png' class='ruleHide' bindtap='hideNotice'></image>
+    <scroll-view scroll-y class="scroll-y" style='margin-top:-5rpx;height:70%;'>
+      <block wx:for="{{comment}}">
+        <view class="comment" bindtap="showInputBox" data-video_id="{{item.video_id}}" data-comment_id="{{item.comment_id}}">
+          <view class="c_left">
+            <image src="{{item.member_avatar}}"></image>
+          </view>
+          <view class="c_right">
+            <view>{{item.member_nickname}}</view>
+            <view>
+              {{item.content}}
+            </view>
+          </view>
+        </view>
+        <!-- 回复 -->
+        <block wx:for="{{replys}}" wx:for-item="reply">
+        <view wx:if="{{reply.comment_id == item.comment_id}}" class="comments" bindtap="showInputBox" data-video_id="{{reply.video_id}}" data-comment_id="{{reply.comment_id}}" data-member_id="{{reply.member_id}}" data-member_nickname="{{reply.member_nickname}}" data-reply_id="{{reply.reply_id}}">
+          <view class="c_left">
+            <image src="{{reply.member_avatar}}"></image>
+          </view>
+          <view class="c_right">
+            <view>{{reply.member_nickname}}</view>
+            <view>
+              {{reply.content}}
+            </view>
+          </view>
+        </view>
+
+          <!-- 多级回复 -->
+          <block wx:for="{{replyes}}" wx:for-item="replyes" wx:if="{{replyes.replys_id == reply.reply_id && replyes.comment_id == item.comment_id}}">
+            <view class="comments">
+              <view class="c_left">
+                <image src="{{replyes.member_avatar}}"></image>
+              </view>
+              <view class="c_right">
+                <view>{{replyes.member_nickname}}</view>
+                <view>
+                  <text>回复</text> {{replyes.bmember_nickname}}: {{replyes.content}}
+                </view>
+              </view>
+            </view>
+          </block>
+
+
+        </block>
+      </block>
+    </scroll-view>
+    <!-- 评论框 -->
+    <view>
+    <form bindsubmit="formSubmit">
+      <view class='input-box'>
+        <textarea class="textarea" placeholder="说点什么吧" cursor-spacing="{{65}}" show-confirm-bar="{{false}}" adjust-position="{{true}}" auto-focus="{{true}}" name="content" value="{{content}}" />
+        <button class='send' style="width:20%;" form-type="submit">发送</button>
+      </view>
+    </form>
+    </view>
+  </view>
+</view>
+
+<!-- 评论框 -->
+<view class='model' wx:if="{{inputBoxShow}}">
+<form bindsubmit="replys">
+        <!-- invisible_model view 用于点击隐藏model评论框 -->
+  <view class='invisible_model' catchtap='invisible'></view>
+  <view class='input-box'>
+    <textarea class="textarea" placeholder="说点什么吧" cursor-spacing="{{65}}" show-confirm-bar="{{false}}" adjust-position="{{true}}" auto-focus="{{true}}" name="content" value="{{content}}" />
+    <button class='send' style="width:20%;" form-type="submit">发送</button>
+  </view>
+</form>
+</view>

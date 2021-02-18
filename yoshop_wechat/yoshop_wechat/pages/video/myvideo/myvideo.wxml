@@ -1,0 +1,18 @@
+<view class="page">
+  <view class="user">
+    <image src="{{member_avatar}}"></image>
+    <view>{{member_nickname}}</view>
+    <view class="fb" bindtap="upload_video">+发布作品</view>
+  </view>
+  <view class="title">
+    <view class="{{current==0?'tts':'tt'}}" data-current="0" bindtap="swichNav">我的作品</view>
+    <view class="{{current==1?'tts':'tt'}}" data-current="1" style="margin-left:10pt;" bindtap="swichNav">我的喜欢</view>
+  </view>
+  <view class="works">
+    <block wx:for="{{videoList}}">
+      <view class="element">
+        <video class="video" src="https://jx.huachenedu.cn/public/{{item.video_src}}"></video>
+      </view>
+    </block>
+  </view>
+</view>

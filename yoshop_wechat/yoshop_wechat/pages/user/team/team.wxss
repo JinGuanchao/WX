@@ -1,0 +1,393 @@
+page {
+  position: relative;
+  background: #fff;
+}
+
+.page {
+  height: 100%;
+  /* position: fixed; */
+  width: 100%;
+}
+
+.travel_view {
+  border: 1rpx solid #fff;
+  height: 200rpx;
+}
+
+.travel_view_img_box {
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+  border-radius: 50rpx;
+  overflow: hidden;
+  margin-right: 10rpx;
+}
+
+.travel_view_img {
+  width: 100%;
+  height: auto;
+}
+
+.travel_view_detail {
+  height: 160rpx;
+  margin-left: 290rpx;
+}
+
+
+scroll-view {
+  height: 100%;
+}
+
+.integral-page {
+  height: 200rpx;
+  position: relative;
+}
+
+.integral-bg {
+  width: 100%;
+  height: 200rpx;
+}
+
+.integral-num {
+  position: absolute;
+  z-index: 1;
+  flex-direction: row;
+  align-items: center;
+  top: 25rpx;
+  left: 75rpx;
+}
+
+.all-integral {
+  font-size: 30px;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: 5rpx;
+}
+
+.all-integral text {
+  font-size: 20px;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  margin-left: 10rpx;
+}
+
+.integral-link {
+  display: block;
+  /* width: 220rpx; */
+  height: 50rpx;
+  margin-top: 10rpx;
+  border-radius: 8rpx;
+  /* border: 1px solid rgba(255, 255, 255, 1); */
+  font-size: 20px;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  line-height: 32rpx;
+  text-align: center;
+}
+
+.integral-detail {
+  width: 690rpx;
+  height: 110rpx;
+  margin: 30rpx auto 0;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 14rpx 0px rgba(43, 92, 114, 0.07);
+  border-radius: 10rpx;
+  border: 1px solid rgba(229, 229, 229, 1);
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.integral-text {
+  padding-top: 5rpx;
+}
+
+.integral-text text {
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  /* color:rgba(102,102,102,1); */
+}
+
+.flight-discount image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 2rpx;
+  margin-right: 2rpx;
+}
+
+.flight-discount text {
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+}
+
+.add-num {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(232, 157, 11, 1);
+  line-height: 105rpx;
+}
+
+.text-content {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 44rpx;
+  padding: 35rpx;
+}
+
+.text-content text {
+  display: block;
+  text-align: left;
+}
+
+.nav-wrap {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  color: #fff;
+  z-index: 999999;
+  background: #fff;
+}
+
+.page-group-position {
+  width: 100%;
+  height: 80rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+  font-size: 32rpx;
+  color: #fff;
+  font-family: PingFang SC;
+  font-weight: 400;
+  padding-left: 30rpx;
+  opacity: 0;
+  z-index: 999999999;
+}
+
+/* 标题要居中 */
+
+.nav-title {
+  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  top: 0;
+  left: 30rpx;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 32rpx;
+  color: #fff;
+  font-family: PingFang SC;
+  font-weight: 400;
+}
+
+.nav-title-text {
+  float: left;
+  margin-left: 15rpx;
+  color: black;
+}
+
+.img-auto {
+  width: 14rpx;
+  height: 25rpx;
+  padding: 10rpx 15rpx;
+}
+
+.back {
+  width: 34rpx;
+  height: 45rpx;
+  margin-top: 10rpx;
+  float: left;
+}
+
+.view_bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.content_box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  height: auto;
+  width: 90%;
+  position: relative;
+  margin: 0 auto;
+  background: rgba(252, 245, 237, 1);
+  overflow: hidden;
+  /* border:1px solid rgba(237, 203, 186, 1);
+  box-shadow:0px 2px 0px 0px rgba(255,255,255,0.34);
+  border-radius:6rpx; */
+}
+
+.card_titel {
+  position: absolute;
+  top: 100rpx;
+  left: 80rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  line-height: 21px;
+}
+
+.card_price {
+  position: absolute;
+  top: 110rpx;
+  right: 90rpx;
+  font-size: 50rpx;
+  font-family: Myriad Pro;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  line-height: 30px;
+}
+
+.card_explain_titel {
+  position: absolute;
+  top: 115rpx;
+  left: 80rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  line-height: 46px;
+  opacity: 0.8;
+}
+
+.card_explain {
+  width: 76%;
+  position: absolute;
+  top: 190rpx;
+  left: 50%;
+  margin-left: -38%;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  color: rgba(255, 255, 255, 1);
+  opacity: 0.8;
+}
+
+.card_number {
+  margin-right: 20rpx;
+  float: right;
+  color: red;
+}
+
+.card_bth {
+  margin: 100rpx auto 0 auto;
+  width: 500rpx;
+  height: 107rpx;
+  position: relative;
+}
+
+.card_bth_titel {
+  width: 100%;
+  line-height: 70rpx;
+  font-size: 36rpx;
+  text-align: center;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 0;
+}
+
+.card_time {
+  margin-bottom: 100rpx;
+  text-align: center;
+  font-size: 22rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  line-height: 21px;
+  opacity: 0.8;
+}
+
+.input {
+  width: 100%;
+  height: 73rpx;
+  padding-left: 30rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+  line-height: 21px;
+  opacity: 0.74;
+}
+
+.ruleZhezhao {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.ruleZhezhaoContent {
+  height: 100%;
+  width: 100%;
+  background: rgba(248, 248, 248, 1);
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  position: absolute;
+  bottom: 0;
+}
+
+.rule_head {
+  position: absolute;
+  width: 160rpx;
+  height: 160rpx;
+  top: -80rpx;
+  left: 50%;
+  margin-left: -50rpx;
+}
+
+.rule_head_img {
+  width: 100%;
+  height: 100%;
+}
+
+.ruleZhezhaoText {
+  width: auto;
+  font-size: 30rpx;
+  display: flex;
+  color: #333;
+  flex-direction: row;
+  align-items: center;
+  margin: 31rpx 0 0 31rpx;
+}
+
+.ruleHide {
+  height: 60rpx !important;
+  width: 60rpx !important;
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+}
+
+.rule {
+  display: block;
+  border: 1px solid #fff;
+  width: 100rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #fff;
+  height: 60rpx;
+  font-size: 30rpx;
+  border-radius: 30rpx;
+  position: absolute;
+  top: 10%;
+  right: 5%;
+}

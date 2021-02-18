@@ -1,0 +1,107 @@
+<block wx:if="{{hide == 1}}">
+<block wx:if="{{hs == 1}}">
+  <image style="width:100%;height:1000rpx;" src="../../images/hs.jpg"></image>
+</block>
+<block wx:else>
+<view class="container">
+ <image class="tit" src="https://jx.huachenedu.cn/public/uploads/home/adv/5ff0218de67fc.jpg"></image>
+   <view class="classname">
+  <form bindsubmit="reg">
+        <!--缩略图-->
+          <view class="t">店铺logo↓</view>
+          <view class="ii">(限制jpg、jpeg,像素：200*200 or 512*512)</view>
+          <view class="page-body-info">
+              <view class="kk">
+                <block wx:if="{{logo}}">
+                    <image src="{{logo}}" class="image" mode="aspectFit" bindtap="del" data-type="min"></image>
+                </block>
+                <block wx:else>
+                  <view class="image-plus image-plus-nb" bindtap="chooselogo">
+                    <image src="../../images/timg.jpg" style="width:100%;height:100%"></image>
+                  </view>
+                </block>
+              </view>
+          </view>
+        <view class="xing">店铺名称：  
+         <input placeholder-class='placeholder' placeholder='请输入店铺名称' class="in" name="shop_name"/>
+         </view>
+         <view class="xing">联系人：
+           <input placeholder-class='placeholder'  placeholder='请输入联系人'  class="in" name='contacts_name' />
+           </view>
+         <view class="xing">手机号：
+           <input placeholder-class='placeholder'  placeholder='请输入你的电话'  type='number' class="in" name='contacts_phone' />
+           </view>
+         <view class="xing">身份证号：
+           <input placeholder-class='placeholder'  placeholder='请输入身份证号'  class="in" name='id_number' />
+           </view>
+        <view class="xi">店铺介绍：
+           <textarea placeholder-class='placeholder'  placeholder='请简单介绍一下店铺'  class="i" name='shop_detail'/>
+           </view>
+          
+          <!--缩略图-->
+          <view class="t">身份证正面</view>
+          <view class="ii">(限制jpg、jpeg,像素：200*200 or 512*512)</view>
+          <view class="page-body-info">
+              <view class="kk">
+                <block wx:if="{{id_image1}}">
+                    <image src="{{id_image1}}" class="image" mode="aspectFit" bindtap="del" data-type="min"></image>
+                </block>
+                <block wx:else>
+                  <view class="image-plus image-plus-nb" bindtap="chooselogo1">
+                    <image src="../../images/timg.jpg" style="width:100%;height:100%"></image>
+                  </view>
+                </block>
+              </view>
+          </view>
+          <!--缩略图-->
+          <view class="t">身份证反面</view>
+          <view class="ii">(限制jpg、jpeg,像素：200*200 or 512*512)</view>
+          <view class="page-body-info">
+              <view class="kk">
+                <block wx:if="{{id_image2}}">
+                    <image src="{{id_image2}}" class="image" mode="aspectFit" bindtap="del" data-type="min"></image>
+                </block>
+                <block wx:else>
+                  <view class="image-plus image-plus-nb" bindtap="chooselogo2">
+                    <image src="../../images/timg.jpg" style="width:100%;height:100%"></image>
+                  </view>
+                </block>
+              </view>
+          </view>
+          <!--缩略图-->
+          <view class="t">营业执照</view>
+          <view class="ii">(限制jpg、jpeg,像素：200*200 or 512*512)</view>
+          <view class="page-body-info">
+              <view class="kk">
+                <block wx:if="{{id_photo}}">
+                    <image src="{{id_photo}}" class="image" mode="aspectFit" bindtap="del" data-type="min"></image>
+                </block>
+                <block wx:else>
+                  <view class="image-plus image-plus-nb" bindtap="chooselogo3">
+                    <image src="../../images/timg.jpg" style="width:100%;height:100%"></image>
+                  </view>
+                </block>
+              </view>
+          </view>
+          <!--end-->
+      <view class="jj">请仔细填写联系方式，保证我们能尽快联系到你！</view>
+<view class="shuoming">
+<checkbox-group class="group" bindchange="checkboxChange">
+    <view class="label-1" wx:for-items="{{checkboxItems}}">
+        <label>
+            <checkbox hidden value="{{item.name}}" checked="{{item.checked}}"></checkbox>
+            <view class="label-1__icon">
+                <view class="label-1__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
+            </view>
+        </label>
+        <text class="label-1__text">{{item.value}}</text><text class="label-2__text" style="color:#7171C6" bindtap="modalTap">【入驻申请协议】</text>
+    </view>
+</checkbox-group>
+</view>
+<button type="" form-type="submit" hover-class='button-hover' class='su'>立刻申请入驻</button>
+   </form>
+   </view>
+
+</view>
+</block>
+</block>

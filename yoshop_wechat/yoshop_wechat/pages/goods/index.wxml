@@ -1,0 +1,261 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<scroll-view bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;">
+  <view class="container" wx:if="{{detail.pgoods_id}}">
+    <view bindtap="imgPreview">
+      <swiper autoplay="{{autoplay}}" bindchange="setCurrent" class="banner-box  swiper-box" duration="{{duration}}" indicator-dots="{{indicatorDots}}" interval="{{interval}}">
+        <swiper-item wx:for="{{detail.pgoods_image}}">
+          <image class="slide-image" mode="aspectFit" src="https://jx.huachenedu.cn/public/uploads/home/pointprod/{{item}}"></image>
+        </swiper-item>
+      </swiper>
+      <view class="number-banner">
+        <text>{{currentIndex}}</text>
+        <text>/{{detail.pgoods_image.length}}</text>
+      </view>
+    </view>
+    <view class="cont-box b-f">
+      <view class="goods-title ">
+        <text class="title f-32 twolist-hidden">{{detail.pgoods_name}}</text>
+      </view>
+      <view class="money-box">
+        <text class="num">￥{{detail.price}}</text>
+        <text style="background: red;color:white;border-radius: 50rpx;padding:10rpx;text-align: center;margin-left:20rpx;">可抵扣￥{{detail.limit_price}}</text>
+        <!-- <text class="del" wx:if="{{detail.pgoods_price>0}}">￥{{detail.pgoods_price}}</text> -->
+        
+      </view>
+      <view class="goods-sales-box f-28 dis-flex">
+        <text class="flex-box num" style="line-height: 80rpx;">销量：{{detail.pgoods_salenum}}</text>
+        <text class="flex-box stock" style="line-height: 80rpx;margin-right:20rpx;">库存：{{detail.pgoods_storage}}</text>
+        <view class="share">
+          <image src="../../images/share.png"></image>
+          <text>分享</text>
+          <button open-type="share"></button>
+        </view>
+        
+      </view>
+    </view>
+    <view class="cont-box b-f" style="margin-top:25rpx;" wx:if="{{spell.length}}">
+      <view class="goods-title ">
+        <text class="title f-32 twolist-hidden" style="color:#666666;">这些人刚刚拼单成功,可参与拼单</text>
+      </view>
+      <view style="border-bottom:1px solid #f7f7f7;margin-top:20rpx;"></view>
+      <block wx:for="{{spell}}">
+        <view class="group">
+          <view class="g_left">
+            <image src="{{item.member_avatar}}"></image>
+            <view style="margin-left:10rpx;">{{item.member_name}}</view>
+            <view style="margin-left:20rpx;">团价<text style="color:#ff495e;">￥{{item.price}}</text></view>
+            <view style="margin-left:20rpx;"><text style="color:#666666;">差{{7-item.member_num}}人</text></view>
+            <view style="margin-left:20rpx;"><text style="color:#666666;">{{item.end_time}}</text></view>
+          </view>
+          <block wx:if="{{item.end_time != '已超时'}}">
+            <view class="g_right" bindtap="group" data-spell_id="{{item.spell_id}}" data-member_name="{{item.member_name}}" data-price="{{item.price}}">参与拼单</view>
+          </block>
+          <block wx:if="{{item.end_time == '已超时'}}">
+            <view class="g_right" style="background:#666666;">已超时</view>
+          </block>
+        </view>
+      </block>
+    </view>
+    <!-- <view bindtap="onChangeShowState" class="cont-box b-f goods-property-box m-top20" wx:if="{{showView}}">
+      <text class="col-3 f-30">已选</text>
+      <text class="col-3 f-30 pl-12">{{goods_num}} 个</text>
+      <view class="goods-property-jianTou">
+        <text class="iconfont icon-xiangyoujiantou user-orderJtou-1 {{showView?'user-orderJtou-2':''}}"></text>
+      </view>
+    </view>
+    <view class="cart bright789_view_hide {{showView?'bright789_view_show':''}}">
+      <view class="modal_cont_box">
+        <scroll-view class="goods-list-box" scroll-y="true">
+          <view class="cf tmall-types" wx:for="{{specData.spec_attr}}" wx:for-item="attr" wx:for-index="attr_idx" wx:key="key">
+            <view class="tipstxt" data-id="{{attr.group_id}}">{{attr.group_name}}</view>
+            <view class="cf cartypelist" wx:for="{{attr.spec_items}}" wx:for-index="item_idx" wx:key="ikey">
+              <view wx:if="{{item.checked}}">
+                <view bindtap="modelTap" class="cartypeitem cur" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
+              </view>
+              <view wx:else>
+                <view bindtap="modelTap" class="cartypeitem" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}">{{item.spec_value}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="buy_number">
+            <view class="buyNumber f-26">
+              <text>购买数量</text>
+            </view>
+            <view class="selectNumber">
+              <button bindtap="down" class="default  {{goods_num>1?'':' default-active'}}" type="default">-</button>
+              <input bindinput="import" type="number" value="{{goods_num}}" disabled></input>
+              <button bindtap="up" class="default" type="default">+</button>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view> -->
+
+    <block wx:if="{{shop.length != 0}}">
+      <view class="shop">
+        <view class="s_left">
+          <image style="width:130rpx;height:130rpx;border-radius: 10rpx;" mode="aspectFit" src="{{shop.shop_logo}}"></image>
+          <view class="s_detail">
+            <view>{{shop.shop_name}}</view>
+            <view style="font-size:12px;color:#666;">{{shop.shop_detail}}</view>
+          </view>
+        </view>
+        <view class="s_right" bindtap="stroll">
+          <view>进店逛逛</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="shop">
+        <view class="s_left">
+          <image style="width:140rpx;height:140rpx;border-radius: 10rpx;" mode="aspectFill" src="../../images/logo.png"></image>
+          <view class="s_detail">
+            <view>君享官方自营店</view>
+            <view>官方自营</view>
+          </view>
+        </view>
+        <view class="s_right" bindtap="stroll">
+          <view>进店逛逛</view>
+        </view>
+      </view>
+    </block>
+    
+
+    <!-- 商品评论 -->
+    <block wx:if="{{goodsComment}}">
+      <view class="cont-box b-f goods-property-box m-top20">
+        <text class="col-3 f-30">评价</text>
+        <text bindtap="toChild" class="comment-num">查看更多</text>
+        <view class="goods-property-jianTou">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou" style="margin-top:0;"></text>
+        </view>
+      </view>
+      <view class="goods_comment_box b-f">
+        <view class="cont-box goods-comment-box b-t b-f b-b" wx:for="{{goodsComment}}" wx:key="goodsComment">
+          <text class="admin">{{item.name}}</text>
+          <view class="com_xing">
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>0?'active ':''}}"></text>
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>1?'active ':''}}"></text>
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>2?'active ':''}}"></text>
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>3?'active ':''}}"></text>
+            <text class="iconfont icon-shoucang1 {{item.comment_rank>4?'active ':''}}"></text>
+          </view>
+          <view class="goods-comment-cont m-top20">{{item.cont}}</view>
+          <view class="f-22 col-9 m-top10">{{item.time}}</view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 商品描述 -->
+    <view class="p-bottom">
+      <view class="top-nav m-top20 b-f b-b">
+        <view class="top-nav-bar">
+          <view bindtap="toOrder" id="top-nav-bar-true">
+            <span>商品描述</span>
+          </view>
+        </view>
+      </view>-
+      <view class="order" hidden="{{hiddenOrder}}">
+        <view wx:if="{{detail.pgoods_body!=''}}">
+          <view class="b-f goods-detail-box">
+            <view class="goods-cont-li">
+              <template is="wxParse" data="{{wxParseData:tourData.nodes}}" />
+            </view>
+          </view>
+        </view>
+        <view wx:else>
+          <view class="ectouch-notcont">
+            <text class="iconfont icon-meiyougengduo"></text>
+            <text class="cont">亲,此处暂无详情数据</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="footer-fixed f-30" wx:if="{{!showView}}">
+      <view class="goods-fixed-icon">
+        <contact-button sessionFrom="weapp" size="27" style="opacity: 0;position:absolute;top:20rpx;left:20rpx;" type="default-light"></contact-button>
+        <image class="flow-img" src="../../images/kefu.png"></image>
+      </view>
+      <view bindtap="flowCart" class="goods-fixed-icon">
+        <image class="flow-img" src="../../images/flow.png"></image>
+        <view class="flow_num" wx:if="{{cart_total_num > 0}}">
+          <text>{{cart_total_num}}</text>
+        </view>
+      </view>
+      <block wx:if="{{detail.pgoods_storage > 0}}">
+        <view bindtap="submit" class="order-number" data-type="addCart">加入购物车</view>
+        <view bindtap="popUpAttr" class="order-bt" style="background:orange;" data-type="buyNow"> 立即购买</view>
+        <view bindtap="spell" class="order-bt">发起拼团</view>
+      </block>
+      <view class="default-btn" style="wdata-typeth:100%" wx:else>暂无现货</view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 返回顶部 -->
+<view bindtap="goTop" class="widget-goTop" wx:if="{{floorstatus}}">
+  <text class="iconfont icon-fanhuidingbu"></text>
+</view>
+
+<!-- 快捷导航工具 -->
+<view class="filter-menu {{nav_select?'active':''}}">
+  <view class="filter-menu-list ts-5">
+    <custom-ul>
+      <custom-li bindtap="nav" data-index="home">
+        <text class="iconfont icon-home"></text>
+      </custom-li>
+      <custom-li bindtap="nav" data-index="fenlei">
+        <text class="iconfont icon-fenlei"></text>
+      </custom-li>
+      <custom-li bindtap="nav" data-index="cart">
+        <text class="iconfont icon-cart"></text>
+      </custom-li>
+      <custom-li bindtap="nav" data-index="profile">
+        <text class="iconfont icon-profile"></text>
+      </custom-li>
+      <custom-li class="w"></custom-li>
+    </custom-ul>
+  </view>
+  <view bindtap="commonNav" class="filter-menu-title"></view>
+</view>
+
+<!-- 商品规格框 -->
+<view wx:if="{{showView}}" class="popUpAttrs">
+    <view class="popUpAttrs lucency" bindtap='popUpAttr'></view>
+    <view class="cart bright789_view_hide {{showView?'bright789_view_show':''}} spec_items">
+      <view class="modal_cont_box m_top" style="display:flex;">
+        <image src="https://jx.huachenedu.cn/public/uploads/home/pointprod/{{detail.pgoods_image[0]}}"></image>
+        <view style="color: #ff495e;font-size: 40rpx;margin-top: 150rpx;">￥400</view>
+      </view>
+      <view class="modal_cont_box">
+        <scroll-view class="goods-list-box" scroll-y="true">
+          <view class="cf tmall-types" wx:for="{{specData.spec_attr}}" wx:for-item="attr" wx:for-index="attr_idx" wx:key="key">
+            <view class="tipstxt" data-id="{{attr.group_id}}">{{attr.group_name}}</view>
+            <view class="cf cartypelist" wx:for="{{attr.spec_items}}" wx:for-index="item_idx" wx:key="ikey">
+              <view wx:if="{{item.checked}}">
+                <view bindtap="modelTap" class="cartypeitem cur" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}" data-sku_id="{{item.sku_id}}">{{item.name}}</view>
+              </view>
+              <view wx:else>
+                <view bindtap="modelTap" class="cartypeitem" data-attr-idx="{{attr_idx}}" data-item-idx="{{item_idx}}" data-sku_id="{{item.sku_id}}">{{item.name}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="buy_number">
+            <view class="buyNumber f-26">
+              <text>购买数量</text>
+            </view>
+            <view class="selectNumber">
+              <button bindtap="down" class="default  {{goods_num>1?'':' default-active'}}" type="default">-</button>
+              <input bindinput="import" type="number" value="{{goods_num}}" disabled></input>
+              <button bindtap="up" class="default" type="default">+</button>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="btn">
+        <button>确定</button>
+      </view>
+    </view>
+</view>

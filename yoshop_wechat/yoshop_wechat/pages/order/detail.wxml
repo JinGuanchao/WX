@@ -1,0 +1,113 @@
+<view class="container p-bottom" wx:if="{{order.point_orderid}}">
+  <scroll-view scroll-y="true">
+
+    <!-- 收货地址 -->
+    <view class="b-f">
+      <view class="flow-checkout-header b-f dis-flex">
+        <view class="flow-header-left padding-box">
+          <view class="flow-checkout-admin f-32 col-3">{{address.pointoa_truename}}
+            <text class="f-32 col-m">{{address.pointoa_mobphone}}</text>
+          </view>
+          <view class="flow-checkout-address">
+            {{address.pointoa_areainfo}} {{address.pointoa_address}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 物流信息 -->
+    <view class="flow-all-money b-f padding-box m-top20" wx:if="{{order.delivery_status.value === 20}}">
+      <view class="dis-flex flow-all-list-cont">
+        <text class="col-7">快递公司: {{order.express_company}}</text>
+      </view>
+      <view class="dis-flex flow-all-list-cont">
+        <text class="col-7" selectable="{{true}}">快递单号: {{order.point_shippingcode}}</text>
+      </view>
+    </view>
+
+    <!-- 商品列表 -->
+    <view class="order-cont b-f m-top20">
+      <view class="padding-box b-f">
+        <view class="order-header dis-flex">
+          <view class="flex-box t-l">
+            <text class="title">商品列表</text>
+          </view>
+          <view class="flex-box t-r">
+            <text class="col-m" wx:if="{{order.pay_status.value===10}}">{{order.pay_status.text}}</text>
+            <text class="col-m" wx:if="{{order.pay_status.value===20 && order.delivery_status.value===10}}">{{order.delivery_status.text}}</text>
+            <text class="col-m" wx:if="{{order.pay_status.value===20 && order.delivery_status.value===20 && order.receipt_status.value===10}}">{{order.receipt_status.text}}</text>
+            <text class="col-m" wx:if="{{order.order_status.value===30}}">{{order.order_status.text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="padding-box b-f">
+        <view class="order-cont dis-flex">
+          <view class="order-num">
+            <text selectable="{{true}}">订单号：{{order.point_ordersn}}</text>
+          </view>
+          <view class="order-time">
+            <text>{{order.point_addtime}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="padding-box b-f">
+      <view bindtap="goodsDetail" class="dis-flex flow-shopList b-f" data-id="{{goods.pgoods_id}}">
+        <view class="flow-list-left">
+          <image mode="aspectFit" src="https://jx.huachenedu.cn/public/uploads/home/pointprod/{{goods.pgoods_image}}"></image>
+        </view>
+        <view class="flow-list-right">
+          <text class="h4 twolist-hidden">{{goods.pgoods_name}}</text>
+          <text class="p f-22 col-7">{{order.point_buyername}}</text>
+          <view class="flow-list-cont">
+            <text class="flow-cont">￥{{goods.pgoods_price}}</text>
+            <text class="small">×{{order.buy_num}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="select b-f">
+      <view class="flow-num-box b-f">共{{order.buy_num}}件商品，合计：
+        <text class="flow-money">{{order.point_price}}</text>
+      </view>
+    </view>
+
+
+    <!-- 订单金额 -->
+    <!-- <view class="flow-all-money b-f padding-box m-top20">
+      <view class="dis-flex flow-all-list">
+        <text class="flex-five">订单金额</text>
+      </view>
+      <view class="dis-flex flow-all-list-cont">
+        <text class="flex-five col-7">商品金额:</text>
+        <text class="flex-five col-m t-r">￥{{order.total_price}}</text>
+      </view>
+      <view class="dis-flex flow-all-list-cont">
+        <text class="flex-five col-7">配送费用:</text>
+        <text class="flex-five col-m t-r">+￥{{order.express_price}}</text>
+      </view>
+      <view class="dis-flex flow-all-list-cont">
+        <text class="flex-five col-7">应付金额:</text>
+        <text class="flex-five col-m t-r">￥{{order.pay_price}}</text>
+      </view>
+    </view> -->
+
+  </scroll-view>
+
+  <view class="flow-fixed-footer b-f">
+    <view class="dis-flex chackout-box" wx:if="{{order.point_orderstate===10}}">
+      <view bindtap="cancelOrder" class="flex-box chackout-left-detail t-c">
+        取消订单
+      </view>
+      <view class="flex-box chackout-right-detail">
+        <text bindtap="payOrder" class="flow-btn" wx:if="{{order.point_orderstate===10}}">去付款</text>
+      </view>
+    </view>
+    <view class="flow-btn h3" wx:if="{{order.point_orderstate===30}}">
+      <view bindtap="receipt">确认收货</view>
+    </view>
+  </view>
+
+</view>

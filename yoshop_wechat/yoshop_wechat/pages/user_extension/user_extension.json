@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我要赚钱",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "canvasdrawer": "/component/canvasdrawer/canvasdrawer"
+  }
+}

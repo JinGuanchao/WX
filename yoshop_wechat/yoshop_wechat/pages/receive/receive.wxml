@@ -1,0 +1,6 @@
+<image mode="widthFix" style="width:100%" src="../../images/receive.jpg"></image>
+<view class="receive">
+  <button class="btn" wx:if="{{islogin && !state}}" bindtap="receive">领取</button>
+  <button class="btn" wx:if="{{!islogin && !state}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">领取</button>
+  <button class="btn" style="background-color:#ccc;color:#000" wx:if="{{state}}">已领取</button>
+</view>

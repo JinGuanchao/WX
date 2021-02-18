@@ -1,0 +1,29 @@
+<view class="page">
+<scroll-view scroll-y="true" style="position:absolute; top:0; left:0; right:0; bottom:0;hieght:90vh">
+  <view class="coupon-item">
+    <view class="style-six" wx:for="{{box}}" wx:key="{{index}}">
+      <view class="info-box">
+        <view class="coupon-money" style="display:flex;flex-direction: column;justify-content: space-between;align-items: center;">
+          <view style="font-size:12px;">无门槛优惠券</view>
+          <view style="font-size:16px;margin-top:20rpx;">￥{{item.coupon}}</view>
+          <!-- <view style="font-size:12px;color:#ccc;">{{item.end_time}}到期</view> -->
+        </view>
+      </view>
+
+      <view class="get-btn" bindtap="select" data-id="{{item.coupon_id}}" data-coupon="{{item.coupon}}" data-index="{{index}}">
+
+          <span wx:if="{{!itme.state}}" class="{{item.selected == true ? 'select' : 'noselect'}}">{{item.selected == true ? '取消' : '选择'}} </span>
+
+      </view>
+
+    </view>
+
+  </view>
+  </scroll-view>
+  <view class="btn">
+    <view class="b_left">
+      <text style="font-size:14px;">总额￥{{totals}} </text><text style="color:red;">已选择￥{{total}}</text>
+    </view>
+    <button class="save-btn" bindtap="use">立即使用</button>
+  </view>
+</view>
